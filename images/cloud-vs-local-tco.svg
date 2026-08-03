@@ -1,0 +1,152 @@
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="600" fill="url(#bgGradient3)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    Total Cost of Ownership: Cloud API vs Local GPU Cluster
+  </text>
+  <text x="500" y="58" font-size="13" fill="#aaa" text-anchor="middle">
+    Annual operational cost by team size (Year 2+ after initial setup)
+  </text>
+
+  <!-- Grid lines (light) -->
+  <line x1="120" y1="100" x2="920" y2="100" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="150" x2="920" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="200" x2="920" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="250" x2="920" y2="250" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="300" x2="920" y2="300" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="350" x2="920" y2="350" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="400" x2="920" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="120" y1="450" x2="920" y2="450" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Axes -->
+  <line x1="120" y1="480" x2="920" y2="480" stroke="#ddd" stroke-width="2"/>
+  <line x1="120" y1="80" x2="120" y2="480" stroke="#ddd" stroke-width="2"/>
+
+  <!-- Y-axis labels (Annual Cost in USD) -->
+  <text x="105" y="485" font-size="12" fill="#aaa" text-anchor="end">$0</text>
+  <text x="105" y="435" font-size="12" fill="#aaa" text-anchor="end">$100k</text>
+  <text x="105" y="385" font-size="12" fill="#aaa" text-anchor="end">$200k</text>
+  <text x="105" y="335" font-size="12" fill="#aaa" text-anchor="end">$300k</text>
+  <text x="105" y="285" font-size="12" fill="#aaa" text-anchor="end">$400k</text>
+  <text x="105" y="235" font-size="12" fill="#aaa" text-anchor="end">$500k</text>
+  <text x="105" y="185" font-size="12" fill="#aaa" text-anchor="end">$600k</text>
+
+  <!-- X-axis labels (Team Size) -->
+  <text x="210" y="505" font-size="12" fill="#aaa" text-anchor="middle">1 Person</text>
+  <text x="410" y="505" font-size="12" fill="#aaa" text-anchor="middle">10 People</text>
+  <text x="610" y="505" font-size="12" fill="#aaa" text-anchor="middle">50 People</text>
+  <text x="810" y="505" font-size="12" fill="#aaa" text-anchor="middle">100 People</text>
+
+  <!-- Y-axis title -->
+  <text x="30" y="280" font-size="12" fill="#aaa" text-anchor="middle" transform="rotate(-90 30 280)">
+    Annual Cost (USD)
+  </text>
+
+  <!-- X-axis title -->
+  <text x="520" y="540" font-size="12" fill="#aaa" text-anchor="middle">
+    Team Size
+  </text>
+
+  <!-- ==================== LOCAL GPU LINE ==================== -->
+  <!-- Data: 1 person: $3.6k, 10 people: $3.6k, 50 people: $3.6k, 100 people: $3.6k (flat) -->
+  <!-- Scale: $600k = 400px height, so $1k = 0.667px, $3.6k = 2.4px from bottom (480-2.4 = 477.6) -->
+  <polyline points="210,464 410,464 610,464 810,464"
+    stroke="#6FD4D4" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Data points for Local GPU -->
+  <circle cx="210" cy="464" r="5" fill="#6FD4D4" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="410" cy="464" r="5" fill="#6FD4D4" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="610" cy="464" r="5" fill="#6FD4D4" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="810" cy="464" r="5" fill="#6FD4D4" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- ==================== CLOUD API LINE ==================== -->
+  <!-- Data: 1 person: $12k, 10 people: $60k, 50 people: $300k, 100 people: $600k -->
+  <!-- Scale: $1k = 0.667px, so:
+       $12k = 8px from bottom (480-8 = 472)
+       $60k = 40px from bottom (480-40 = 440)
+       $300k = 200px from bottom (480-200 = 280)
+       $600k = 400px from bottom (480-400 = 80)
+  -->
+  <polyline points="210,472 410,440 610,280 810,80"
+    stroke="#2BA5F7" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Data points for Cloud API -->
+  <circle cx="210" cy="472" r="5" fill="#2BA5F7" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="410" cy="440" r="5" fill="#2BA5F7" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="610" cy="280" r="5" fill="#2BA5F7" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="810" cy="80" r="5" fill="#2BA5F7" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- ==================== ANNOTATIONS ==================== -->
+
+  <!-- Breakeven zone highlight (1-10 people) -->
+  <rect x="200" y="430" width="220" height="60" fill="#6FD4D4" opacity="0.1" rx="4"/>
+  <text x="310" y="450" font-size="11" fill="#6FD4D4" text-anchor="middle" font-weight="bold">Crossover Zone</text>
+  <text x="310" y="468" font-size="10" fill="#6FD4D4" text-anchor="middle">(1-10 people)</text>
+
+  <!-- Local GPU annotation -->
+  <g>
+    <rect x="620" y="430" width="180" height="50" fill="#1a1a1a" stroke="#6FD4D4" stroke-width="1" rx="3"/>
+    <text x="710" y="450" font-size="12" font-weight="bold" fill="#6FD4D4" text-anchor="middle">Local GPU</text>
+    <text x="710" y="470" font-size="10" fill="#ddd" text-anchor="middle">$3.6k/year (stable)</text>
+  </g>
+
+  <!-- Cloud API annotation -->
+  <g>
+    <rect x="620" y="80" width="180" height="50" fill="#1a1a1a" stroke="#2BA5F7" stroke-width="1" rx="3"/>
+    <text x="710" y="100" font-size="12" font-weight="bold" fill="#2BA5F7" text-anchor="middle">Cloud API</text>
+    <text x="710" y="120" font-size="10" fill="#ddd" text-anchor="middle">$600k @ 100 people</text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <rect x="30" y="80" width="200" height="90" fill="#1a1a1a" stroke="#666" stroke-width="1" rx="4"/>
+
+    <line x1="45" y1="100" x2="75" y2="100" stroke="#6FD4D4" stroke-width="3"/>
+    <circle cx="60" cy="100" r="3" fill="#6FD4D4"/>
+    <text x="85" y="105" font-size="11" fill="#ffffff">Local GPU (RTX3060×2)</text>
+
+    <line x1="45" y1="125" x2="75" y2="125" stroke="#2BA5F7" stroke-width="3"/>
+    <circle cx="60" cy="125" r="3" fill="#2BA5F7"/>
+    <text x="85" y="130" font-size="11" fill="#ffffff">Cloud API (Scaling)</text>
+
+    <text x="40" y="155" font-size="9" fill="#aaa" font-style="italic">
+      ✓ Local = Fixed cost after setup
+    </text>
+  </g>
+
+  <!-- Cost breakdown boxes -->
+  <g>
+    <text x="500" y="560" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      💰 Key Economics
+    </text>
+
+    <rect x="50" y="575" width="140" height="40" fill="#1a1a1a" stroke="#999" stroke-width="1" rx="3"/>
+    <text x="120" y="591" font-size="10" fill="#ddd" text-anchor="middle">Local Initial</text>
+    <text x="120" y="605" font-size="11" font-weight="bold" fill="#6FD4D4" text-anchor="middle">$2.5k (one-time)</text>
+
+    <rect x="220" y="575" width="140" height="40" fill="#1a1a1a" stroke="#999" stroke-width="1" rx="3"/>
+    <text x="290" y="591" font-size="10" fill="#ddd" text-anchor="middle">Local Annual</text>
+    <text x="290" y="605" font-size="11" font-weight="bold" fill="#6FD4D4" text-anchor="middle">$3.6k (ops)</text>
+
+    <rect x="390" y="575" width="140" height="40" fill="#1a1a1a" stroke="#999" stroke-width="1" rx="3"/>
+    <text x="460" y="591" font-size="10" fill="#ddd" text-anchor="middle">Cloud per Person</text>
+    <text x="460" y="605" font-size="11" font-weight="bold" fill="#2BA5F7" text-anchor="middle">$600/year min</text>
+
+    <rect x="560" y="575" width="140" height="40" fill="#1a1a1a" stroke="#999" stroke-width="1" rx="3"/>
+    <text x="630" y="591" font-size="10" fill="#ddd" text-anchor="middle">Cloud Scale</text>
+    <text x="630" y="605" font-size="11" font-weight="bold" fill="#2BA5F7" text-anchor="middle">$120k @ 20 people</text>
+
+    <rect x="730" y="575" width="210" height="40" fill="#1a1a1a" stroke="#6bff6b" stroke-width="2" rx="3"/>
+    <text x="835" y="591" font-size="10" fill="#6bff6b" text-anchor="middle" font-weight="bold">🎯 Winner: Local GPU</text>
+    <text x="835" y="605" font-size="10" fill="#6bff6b" text-anchor="middle">for teams 10+ people</text>
+  </g>
+
+</svg>

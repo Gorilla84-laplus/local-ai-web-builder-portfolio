@@ -1,0 +1,113 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" fill="url(#bgGradient)"/>
+
+  <!-- Title -->
+  <text x="450" y="30" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    RTX 3060 MSRP vs Used Market Price (2021-2026)
+  </text>
+
+  <!-- Grid lines (light) -->
+  <line x1="80" y1="100" x2="850" y2="100" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="150" x2="850" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="200" x2="850" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="250" x2="850" y2="250" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="300" x2="850" y2="300" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="350" x2="850" y2="350" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="80" y1="400" x2="850" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Axes -->
+  <line x1="80" y1="420" x2="850" y2="420" stroke="#ddd" stroke-width="2"/>
+  <line x1="80" y1="60" x2="80" y2="420" stroke="#ddd" stroke-width="2"/>
+
+  <!-- Y-axis labels (Price in USD) -->
+  <text x="60" y="425" font-size="12" fill="#aaa" text-anchor="end">$0</text>
+  <text x="60" y="375" font-size="12" fill="#aaa" text-anchor="end">$100</text>
+  <text x="60" y="325" font-size="12" fill="#aaa" text-anchor="end">$200</text>
+  <text x="60" y="275" font-size="12" fill="#aaa" text-anchor="end">$300</text>
+  <text x="60" y="225" font-size="12" fill="#aaa" text-anchor="end">$400</text>
+  <text x="60" y="175" font-size="12" fill="#aaa" text-anchor="end">$500</text>
+  <text x="60" y="125" font-size="12" fill="#aaa" text-anchor="end">$600</text>
+  <text x="60" y="75" font-size="12" fill="#aaa" text-anchor="end">$700</text>
+
+  <!-- X-axis labels (Timeline) -->
+  <text x="80" y="445" font-size="12" fill="#aaa" text-anchor="middle">2021</text>
+  <text x="210" y="445" font-size="12" fill="#aaa" text-anchor="middle">2022</text>
+  <text x="340" y="445" font-size="12" fill="#aaa" text-anchor="middle">2023</text>
+  <text x="470" y="445" font-size="12" fill="#aaa" text-anchor="middle">2024</text>
+  <text x="600" y="445" font-size="12" fill="#aaa" text-anchor="middle">2025</text>
+  <text x="730" y="445" font-size="12" fill="#aaa" text-anchor="middle">2026</text>
+  <text x="850" y="445" font-size="12" fill="#aaa" text-anchor="middle">2027</text>
+
+  <!-- Y-axis title -->
+  <text x="20" y="250" font-size="12" fill="#aaa" text-anchor="middle" transform="rotate(-90 20 250)">
+    Price (USD)
+  </text>
+
+  <!-- X-axis title -->
+  <text x="465" y="475" font-size="12" fill="#aaa" text-anchor="middle">
+    Year
+  </text>
+
+  <!-- MSRP Line (Blue, constant at $329) -->
+  <polyline points="80,380 210,380 340,380 470,380 600,380 730,380 850,380"
+    stroke="#6FD4D4" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Used Market Price Line (Gray, declining trend) -->
+  <!-- 2021: $600, 2022: $550, 2023: $400, 2024: $350, 2025: $300, 2026: $280 -->
+  <polyline points="80,92 210,150 340,240 470,280 600,320 730,360 850,365"
+    stroke="#999999" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Data points for MSRP -->
+  <circle cx="80" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="210" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="340" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="470" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="600" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="730" cy="380" r="4" fill="#6FD4D4"/>
+  <circle cx="850" cy="380" r="4" fill="#6FD4D4"/>
+
+  <!-- Data points for Used Market -->
+  <circle cx="80" cy="92" r="4" fill="#999999"/>
+  <circle cx="210" cy="150" r="4" fill="#999999"/>
+  <circle cx="340" cy="240" r="4" fill="#999999"/>
+  <circle cx="470" cy="280" r="4" fill="#999999"/>
+  <circle cx="600" cy="320" r="4" fill="#999999"/>
+  <circle cx="730" cy="360" r="4" fill="#999999"/>
+  <circle cx="850" cy="365" r="4" fill="#999999"/>
+
+  <!-- Legend -->
+  <g>
+    <rect x="600" y="70" width="220" height="80" fill="#1a1a1a" stroke="#666" stroke-width="1" rx="4"/>
+
+    <!-- MSRP legend -->
+    <line x1="615" y1="90" x2="645" y2="90" stroke="#6FD4D4" stroke-width="3"/>
+    <circle cx="630" cy="90" r="3" fill="#6FD4D4"/>
+    <text x="655" y="95" font-size="13" fill="#ffffff">MSRP ($329)</text>
+
+    <!-- Used Market legend -->
+    <line x1="615" y1="115" x2="645" y2="115" stroke="#999999" stroke-width="3"/>
+    <circle cx="630" cy="115" r="3" fill="#999999"/>
+    <text x="655" y="120" font-size="13" fill="#ffffff">Used Market Price</text>
+
+    <!-- Key insight -->
+    <text x="615" y="140" font-size="11" fill="#aaa" font-style="italic">
+      Used prices peaked 2021-22,
+    </text>
+    <text x="615" y="155" font-size="11" fill="#aaa" font-style="italic">
+      now stabilizing below $300
+    </text>
+  </g>
+
+  <!-- Annotation: Price stability zone -->
+  <rect x="470" y="350" width="230" height="75" fill="none" stroke="#6FD4D4" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" rx="3"/>
+  <text x="585" y="345" font-size="11" fill="#6FD4D4" text-anchor="middle" font-weight="bold">
+    Stable Pricing Zone
+  </text>
+</svg>

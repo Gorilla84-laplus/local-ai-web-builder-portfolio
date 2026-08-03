@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskPulse | Preview & Spec | Local AI Web Builder</title>
+  <style>
+    :root{--bg:#0b1120;--panel:#121a31;--line:rgba(255,255,255,.1);--text:#f8fafc;--muted:#b7c0d7;--cyan:#06B6D4;--violet:#8B5CF6;--cyan-soft:#9cf1ff}
+    *{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at top left,rgba(6,182,212,.16),transparent 22%),radial-gradient(circle at right top,rgba(139,92,246,.16),transparent 26%),var(--bg);color:var(--text)}
+    .wrap{max-width:1240px;margin:0 auto;padding:40px 24px 88px}
+    .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan-soft);font-weight:700}
+    h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1.02;margin:.45rem 0 1rem}
+    .lead{max-width:820px;font-size:1.06rem;line-height:1.9;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-top:30px}
+    .panel,.card,.browser-shell{border:1px solid var(--line);border-radius:28px}
+    .panel,.card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03))}
+    .panel{padding:30px}
+    .tag{display:inline-flex;border:1px solid rgba(6,182,212,.34);padding:8px 12px;border-radius:999px;color:var(--cyan-soft);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .headline{font-size:2.2rem;line-height:1.16;margin:18px 0 12px}
+    .cta{display:inline-flex;margin-top:24px;background:linear-gradient(90deg,var(--violet),#b998ff);color:#130d22;padding:14px 22px;border-radius:999px;font-weight:800;text-decoration:none}
+    .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+    .card{padding:22px}
+    .card h3{margin:12px 0 10px;font-size:1.18rem}
+    .card p,.list li,.preview-copy p,.pricing li,.pain li,.feature p,.integrations span,.quote-card p,.launch-flow p{color:var(--muted);line-height:1.8}
+    .browser-wrap{margin-top:46px}
+    .browser-shell{overflow:hidden;background:#d7dde8;box-shadow:0 28px 90px rgba(0,0,0,.24)}
+    .browser-bar{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(180deg,#eef2f7,#d8e0ec);color:#20304b}
+    .browser-dots{display:flex;gap:8px}.browser-dots span{width:12px;height:12px;border-radius:999px;display:block}.browser-dots span:nth-child(1){background:#ff5f57}.browser-dots span:nth-child(2){background:#febc2e}.browser-dots span:nth-child(3){background:#28c840}
+    .browser-url{flex:1;border-radius:999px;background:#f8fbff;padding:10px 16px;font-size:.92rem;color:#516073;border:1px solid rgba(32,48,75,.12)}
+    .browser-body{background:#f1f5fb;padding:18px}
+    .preview-page{overflow:hidden;border-radius:24px;background:#0f172a;color:#f8fafc}
+    .preview-hero{display:grid;grid-template-columns:1.04fr .96fr;gap:24px;padding:36px;background:radial-gradient(circle at top left,rgba(6,182,212,.18),transparent 30%),radial-gradient(circle at top right,rgba(139,92,246,.16),transparent 34%),linear-gradient(145deg,#0f172a,#171f44)}
+    .preview-hero h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.04}
+    .preview-hero p{margin:14px 0 0}
+    .preview-scene{display:grid;gap:16px}
+    .preview-scene-hero{position:relative;overflow:hidden;border-radius:24px;min-height:300px;border:1px solid rgba(255,255,255,.12);background:#11193a}
+    .preview-scene-hero img{width:100%;height:100%;object-fit:cover;display:block}
+    .preview-scene-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,.18))}
+    .preview-dashboard{border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:18px;background:rgba(255,255,255,.05)}
+    .preview-dashboard-bar{display:grid;grid-template-columns:1.3fr .7fr;gap:12px}
+    .dashboard-panel{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;background:rgba(7,13,25,.5)}
+    .dashboard-panel strong{display:block;font-size:1.25rem;color:#fff}
+    .preview-section{padding:30px 36px;border-top:1px solid rgba(255,255,255,.08)}
+    .preview-section-title{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}
+    .preview-section-title h3{font-size:1.55rem;margin:0}
+    .preview-pill{border:1px solid rgba(6,182,212,.34);border-radius:999px;padding:8px 12px;font-size:.76rem;color:var(--cyan-soft);text-transform:uppercase;letter-spacing:.14em}
+    .pain{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0;margin:0;list-style:none}
+    .pain li,.feature,.pricing li{border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:20px;background:rgba(255,255,255,.04)}
+    .pain strong,.feature strong,.pricing strong{display:block;color:#fff}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0;margin:0;list-style:none}
+    .pricing li.is-accent{border-color:rgba(6,182,212,.38);background:linear-gradient(145deg,rgba(6,182,212,.12),rgba(255,255,255,.05))}
+    .integrations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .integrations span{display:flex;align-items:center;justify-content:center;min-height:58px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.035);font-size:.92rem}
+    .launch-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .launch-step,.quote-card{border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px;background:rgba(255,255,255,.04)}
+    .launch-step strong,.quote-card strong{display:block;color:#fff}
+    .proof-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    .list{padding-left:20px}.foot{margin-top:40px;color:var(--muted);font-size:.95rem}a{color:var(--cyan-soft)}
+    @media (max-width:960px){.hero,.preview-hero,.preview-dashboard-bar,.spec-grid,.pain,.feature-grid,.pricing,.integrations,.launch-flow,.proof-pair,.split{grid-template-columns:1fr}}
+    @media (max-width:640px){
+      .wrap{padding:24px 14px 56px}
+      h1{font-size:2.2rem;line-height:1.06}
+      .lead{font-size:.96rem;line-height:1.75}
+      .panel,.card,.browser-shell{border-radius:22px}
+      .panel,.card{padding:18px}
+      .headline{font-size:1.55rem;line-height:1.22}
+      .cta{width:100%;justify-content:center;padding:13px 18px}
+      .browser-bar{padding:10px 12px;gap:8px}
+      .browser-url{padding:8px 12px;font-size:.76rem}
+      .browser-body{padding:10px}
+      .preview-page{border-radius:18px}
+      .preview-hero{padding:18px;gap:16px}
+      .preview-hero h2{font-size:1.9rem;line-height:1.1}
+      .preview-scene-hero{min-height:200px;border-radius:18px}
+      .preview-dashboard{padding:14px;border-radius:18px}
+      .dashboard-panel{padding:13px}
+      .preview-section{padding:18px 16px}
+      .preview-section-title{align-items:start;gap:10px;margin-bottom:14px;flex-direction:column}
+      .preview-section-title h3{font-size:1.18rem;line-height:1.3}
+      .preview-pill{padding:6px 10px;font-size:.66rem}
+      .pain li,.feature,.pricing li,.launch-step,.quote-card{padding:14px;border-radius:16px}
+      .integrations span{min-height:48px;font-size:.82rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Case Study / Startup SaaS</p>
+    <h1>TaskPulse<br>Preview & Spec</h1>
+    <p class="lead">AI搭載の進捗可視化SaaSという架空設定です。新機能「AI遅延予測」を軸に、広告運用に耐える初版LPを1週間以内で出し、その後にA/Bテストを回しやすい構成として作っています。</p>
+
+    <section class="hero">
+      <div class="panel">
+        <span class="tag">Spec</span>
+        <h2 class="headline">開発のボトルネックを、<br>3秒で伝わる価値提案へ整える。</h2>
+        <p class="lead" style="font-size:1rem">ターゲットはCTO、PM、開発ディレクター。CVは14日無料トライアル。`hero_saas_dark`、`pain_points_cards`、`feature_highlights`、`pricing_toggle`、`cta_bottom_banner` を軸に、先進性と速さを両立させます。</p>
+        <a class="cta" href="https://gorilla84-laplus.github.io/local-ai-web-builder-portfolio/">本体LPへ戻る</a>
+      </div>
+      <div class="panel">
+        <span class="tag">System Angle</span>
+        <h2 class="headline">OllamaでA/B文案を量産し、<br>Codexが採用判断を持つ。</h2>
+        <p class="lead" style="font-size:1rem">コピー候補、料金訴求、連携ロゴまわりの反復をローカルで回しつつ、run.json でJSトグルと表記整合を確認する想定です。</p>
+      </div>
+    </section>
+
+    <section class="spec-grid">
+      <article class="card"><p class="eyebrow">Target</p><h3>想定読者</h3><p>10〜50人規模スタートアップのCTO、PM、開発ディレクター。</p></article>
+      <article class="card"><p class="eyebrow">Need</p><h3>抱えている課題</h3><p>AI遅延予測のPMFを素早く検証したいが、価値提案と見た目を急いで揃えたい。</p></article>
+      <article class="card"><p class="eyebrow">CV Goal</p><h3>コンバージョン</h3><p>14日間無料トライアル登録。クレジットカード不要。</p></article>
+    </section>
+
+    <section class="browser-wrap">
+      <p class="eyebrow">Actual Generated Preview</p>
+      <div class="browser-shell">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">http://localhost:8000/preview/taskpulse-delay-predict</div>
+        </div>
+        <div class="browser-body">
+          <div class="preview-page">
+            <section class="preview-hero">
+              <div class="preview-copy">
+                <span class="tag">AI Delay Prediction SaaS</span>
+                <h2>開発のボトルネックを、<br>AIが3秒で検知。</h2>
+                <p>GitHub / Slack / Jira と連携し、プロジェクトの遅延リスクを自動予測。朝会前に、どこが詰まりそうかを先回りで見える化します。</p>
+                <a class="cta" href="#">14日間無料で試す（カード登録不要）</a>
+              </div>
+              <div class="preview-scene">
+                <div class="preview-scene-hero">
+                  <img src="../images/portfolio/cases/taskpulse-hero.png" alt="AI SaaSの分析ダッシュボードを表したビジュアル">
+                </div>
+                <div class="preview-dashboard">
+                  <div class="preview-dashboard-bar">
+                    <div class="dashboard-panel"><span class="eyebrow">Risk</span><strong>Release delay +18%</strong><p>今週のコミット傾向から遅延を予測。</p></div>
+                    <div class="dashboard-panel"><span class="eyebrow">Alert</span><strong>Slack</strong><p>自動通知済み</p></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>連携イメージ</h3>
+                <span class="preview-pill">integration_strip</span>
+              </div>
+              <div class="integrations">
+                <span>GitHub</span>
+                <span>Slack</span>
+                <span>Jira</span>
+                <span>Notion</span>
+              </div>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>抱えている課題</h3>
+                <span class="preview-pill">pain_points_cards</span>
+              </div>
+              <ul class="pain">
+                <li><strong>毎朝の進捗確認に30分</strong><span>口頭での確認が多く、遅れの兆候が埋もれやすい。</span></li>
+                <li><strong>重大バグの発見が遅い</strong><span>リリース直前まで依存タスクの詰まりが見えにくい。</span></li>
+              </ul>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>3大機能</h3>
+                <span class="preview-pill">feature_highlights</span>
+              </div>
+              <div class="feature-grid">
+                <div class="feature"><strong>AI Progress Predict</strong><p>過去のコミット履歴から完成日のズレを予測。</p></div>
+                <div class="feature"><strong>Slack Auto-Alert</strong><p>リスクが高いタスクを関係者へ自動通知。</p></div>
+                <div class="feature"><strong>One-click Integration</strong><p>GitHub / Slack / Jira を5分で接続開始。</p></div>
+              </div>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>料金プラン</h3>
+                <span class="preview-pill">pricing_toggle</span>
+              </div>
+              <ul class="pricing">
+                <li><strong>Starter</strong><p>$0 / mo</p><span>小規模検証向け</span></li>
+                <li class="is-accent"><strong>Pro</strong><p>$29 / mo</p><span>AI遅延予測とSlack通知を解放</span></li>
+                <li><strong>Enterprise</strong><p>Custom</p><span>監査ログ・SSO対応</span></li>
+              </ul>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>導入の立ち上げフロー</h3>
+                <span class="preview-pill">launch_flow</span>
+              </div>
+              <div class="launch-flow">
+                <div class="launch-step"><span class="eyebrow">01</span><strong>トライアル開始</strong><p>アカウント作成から初回接続までを最短化。</p></div>
+                <div class="launch-step"><span class="eyebrow">02</span><strong>Git連携</strong><p>コミット履歴とIssue進行を読み込みます。</p></div>
+                <div class="launch-step"><span class="eyebrow">03</span><strong>AI予測有効化</strong><p>遅延兆候と通知ルールを設定。</p></div>
+                <div class="launch-step"><span class="eyebrow">04</span><strong>朝会運用へ反映</strong><p>リスクの高いタスクを毎日先回りで確認。</p></div>
+              </div>
+            </section>
+
+            <section class="preview-section">
+              <div class="preview-section-title">
+                <h3>よくある導入判断</h3>
+                <span class="preview-pill">buyer_notes</span>
+              </div>
+              <div class="proof-pair">
+                <div class="quote-card"><strong>小規模チームでも意味があるか</strong><p>10〜15人規模でも、依存関係の見えづらさを減らす価値がある前提で設計しています。</p></div>
+                <div class="quote-card"><strong>既存運用を変えすぎないか</strong><p>GitHub、Slack、Jiraをそのまま入口にし、会議時間の短縮へ寄せた訴求にしています。</p></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="split">
+      <article class="card">
+        <p class="eyebrow">Codex単体</p>
+        <ul class="list">
+          <li>キャッチコピー、価格訴求、連携ロゴ、プラン切替の整合を毎回人が持つ必要がある。</li>
+          <li>広告向けのA/Bコピー量産や、無料トライアル導線の調整で負荷が残りやすい。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Local AI Web Builder</p>
+        <ul class="list">
+          <li>要件から構成、実装、見直しまでを同じ流れで進めつつ、Ollamaで文案候補を量産しやすい。</li>
+          <li>run.json で料金トグル、GitHub / Slack ロゴ表記、無料トライアル導線を確認し、改善サイクルを止めにくい。</li>
+        </ul>
+      </article>
+    </section>
+
+    <p class="foot">このページは半実案件風の公開事例です。実在クライアント案件ではありません。</p>
+  </div>
+</body>
+</html>
